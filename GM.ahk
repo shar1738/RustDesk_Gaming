@@ -18,14 +18,14 @@ return
 
 ; Hotkey to increase the radius (Ctrl + Up)
 ^Up::
-    radius += 50
+    radius += 10
     ToolTip, Radius Increased to: %radius%
     SetTimer, RemoveToolTip, -1000
 return
 
 ; Hotkey to decrease the radius (Ctrl + Down)
 ^Down::
-    radius -= 50
+    radius -= 10
     if (radius < 50)  ; Prevent radius from becoming too small
         radius := 50
     ToolTip, Radius Decreased to: %radius%
