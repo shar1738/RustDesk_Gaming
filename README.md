@@ -14,8 +14,9 @@ The program features a straightforward, GUI that lets you toggle the confinement
 
 The basic program is GM which allows is the best option right now
 GM_UI works but is pretty scuffed for now
+You should configure your mouse speed through you os settings and find what works with your game, usually slowing it all the way down is the best way to play. (I couldn't get autohotkey to control your curser speed if their are any solutions let me know).
 RD_Window_Confienment is if you just want to keep your mouse in the RustDesk window (ctrl-t to toggle ctrl-k to stop program)
-all other files are explained below
+all other files are explained below.
 
 GM: Game Mouse
 RD: RustDesk
