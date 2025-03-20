@@ -1,4 +1,4 @@
-﻿#SingleInstance Force
+#SingleInstance Force 
 #Persistent
 
 SetTimer, ConfineMouse, 5  ; Continuously check mouse position
@@ -6,8 +6,11 @@ SetTimer, ConfineMouse, 5  ; Continuously check mouse position
 ; Default variables
 radius := 250  ; Default radius for mouse confinement
 isConfined := false  ; Mouse confinement is disabled by default
-centerX := 0  ; Initialize center coordinates
-centerY := 0  ; Initialize center coordinates
+centerX := 0  
+centerY := 0  
+
+; Load saved radius from settings.ini
+IniRead, radius, settings.ini, Mouse, Radius, 250  
 
 ; Create GUI window
 Gui, Add, Text, vText1 x20 y20 w200 h30, Mouse Confinement: OFF
@@ -15,124 +18,131 @@ Gui, Add, Button, x20 y60 w150 h30 gToggleConfinement, Toggle Confinement
 Gui, Add, Button, x20 y100 w150 h30 gIncreaseRadius, Increase Radius
 Gui, Add, Button, x20 y140 w150 h30 gDecreaseRadius, Decrease Radius
 Gui, Add, Button, x20 y180 w150 h30 gResetRadius, Reset Radius
-Gui, Add, Button, x20 y220 w150 h30 gStopScript, StopScript
-Gui, Show, w200 h300, Mouse Confinement Controls
+Gui, Add, Button, x20 y220 w150 h30 gSaveRadius, Save Radius
+Gui, Add, Button, x20 y260 w150 h30 gLoadRadius, Load Radius
+Gui, Add, Button, x20 y300 w150 h30 gStopScript, Stop Script
+
+; Add manual input for radius
+Gui, Add, Edit, vRadiusInput x20 y340 w100 h25, %radius%
+Gui, Add, Button, x130 y340 w90 h25 gSetManualRadius, Set Radius
+
+; Show the GUI window at the top-left corner of the screen
+Gui, Show, x0 y0 w250 h380, Mouse Confinement Controls
 
 ; Hotkeys
-^t::
+^t::ToggleConfinement()
+^Up::IncreaseRadius()
+^Down::DecreaseRadius()
+^r::ResetRadius()
+^s::SaveRadius()
+^l::LoadRadius()
+^k::StopScript()
+
+ToggleConfinement() {
+    global isConfined, centerX, centerY
     isConfined := !isConfined
     statusText := (isConfined ? "ON" : "OFF")
     GuiControl,, Text1, Mouse Confinement: %statusText%
 
     if (isConfined) {
-        ; Recalculate the center of the screen relative to the desktop when confinement is enabled
         SysGet, ScreenWidth, 0
         SysGet, ScreenHeight, 1
         centerX := ScreenWidth / 2
         centerY := ScreenHeight / 2
     }
+}
 
-return
-
-^Up::
+IncreaseRadius() {
+    global radius
     radius += 10
-    ToolTip, Radius Increased to: %radius%
-    SetTimer, RemoveToolTip, -1000
-return
+    ShowRadiusTooltip("Increased")
+}
 
-^Down::
-    radius -= 10
-    if (radius < 50)
-        radius := 50
-    ToolTip, Radius Decreased to: %radius%
-    SetTimer, RemoveToolTip, -1000
-return
+DecreaseRadius() {
+    global radius
+    radius := Max(radius - 10, 10)  ; Ensure minimum radius is 10
+    ShowRadiusTooltip("Decreased")
+}
 
-^r::
+ResetRadius() {
+    global radius
     radius := 250
-    ToolTip, Radius Reset to Default: %radius%
-    SetTimer, RemoveToolTip, -1000
-return
+    ShowRadiusTooltip("Reset to Default")
+}
 
-ResetRadius:
-    radius := 250
-    ToolTip, Radius Reset to Default: %radius%
-    SetTimer, RemoveToolTip, -1000
-return
+SaveRadius() {
+    global radius := sradius
+    IniWrite, %radius%, settings.ini, Mouse, Radius
+    ShowRadiusTooltip("Saved")
+}
 
-ConfineMouse:
-    if (!isConfined)  ; Exit if confinement is disabled
+LoadRadius() {
+    global radius := sradius
+    IniRead, radius, settings.ini, Mouse, Radius, 250
+
+    ; Debug: Show what was read from the file
+    ToolTip, Debug - Read Radius: %radius%
+    Sleep, 1500  ; Keep tooltip for 1.5 seconds for debugging
+
+    ; Ensure it's a valid number
+    if !(radius is integer) || (radius < 10) {
+        radius := 250  ; Default to 250 if the value is invalid
+    }
+
+    GuiControl,, RadiusInput, %radius%  ; Update the GUI input box
+    ShowRadiusTooltip("Loaded")
+}
+
+SetManualRadius() {
+    global radius
+    GuiControlGet, newRadius, , RadiusInput
+    if (newRadius is integer) && (newRadius >= 10) {  
+        radius := newRadius
+        ShowRadiusTooltip("Set Manually")
+    } else {
+        ToolTip, Invalid Input! Enter a number ≥ 10.
+        SetTimer, RemoveToolTip, -1500
+    }
+}
+
+ConfineMouse() {
+    global isConfined, centerX, centerY, radius
+    if (!isConfined)
         return
 
-    ; Get the current screen width and height, independent of the GUI
     SysGet, ScreenWidth, 0
     SysGet, ScreenHeight, 1
-    ; Calculate the center of the screen based on actual screen dimensions
     centerX := ScreenWidth / 2
     centerY := ScreenHeight / 2
 
-    ; Get current mouse position
     MouseGetPos, mouseX, mouseY
     dx := mouseX - centerX
     dy := mouseY - centerY
     distance := Sqrt(dx * dx + dy * dy)
 
-    if (distance > radius)  ; If the mouse is outside the boundary
-    {
-        ; Calculate the new position to confine the mouse within the circle
+    if (distance > radius) {
         factor := radius / distance
         newX := centerX + (dx * factor)
         newY := centerY + (dy * factor)
-
-        ; Move the mouse to the new position
         MouseMove, %newX%, %newY%, 0
     }
-return
+}
 
-RemoveToolTip:
+ShowRadiusTooltip(action) {
+    global radius
+    ToolTip, Radius %action%: %radius%
+    SetTimer, RemoveToolTip, -1000
+}
+
+RemoveToolTip() {
     ToolTip
-return
+}
 
-; Button actions
-ToggleConfinement:
-    isConfined := !isConfined
-    statusText := (isConfined ? "ON" : "OFF")
-    GuiControl,, Text1, Mouse Confinement: %statusText%
+StopScript() {
+    ToolTip, Stopping Script...
+    SetTimer, ConfineMouse, Off
+    Sleep, 1000
+    ToolTip
+    ExitApp
+}
 
-    if (isConfined) {
-        ; Recalculate the center of the screen every time confinement is toggled on
-        SysGet, ScreenWidth, 0
-        SysGet, ScreenHeight, 1
-        centerX := ScreenWidth / 2
-        centerY := ScreenHeight / 2
-    }
-
-return
-
-IncreaseRadius:
-    radius += 50
-    ToolTip, Radius Increased to: %radius%
-    SetTimer, RemoveToolTip, -1000
-return
-
-DecreaseRadius:
-    radius -= 50
-    if (radius < 50)
-        radius := 50
-    ToolTip, Radius Decreased to: %radius%
-    SetTimer, RemoveToolTip, -1000
-return
-
-; Stop the script and show a tooltip before exiting
-StopScript:
-    ToolTip, StopScript: %StopScript%
-    SetTimer, ConfineMouse, Off  ; Stop the confinement timer
-    Sleep, 1000  ; Wait 1 second to display the tooltip
-    ToolTip  ; Clear the tooltip
-    ExitApp  ; Exit the script
-return
-
-; Hotkey to stop the script (Ctrl + K)
-^k::
-    GoSub, StopScript  ; Call the StopScript label
-return
