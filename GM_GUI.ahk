@@ -35,13 +35,13 @@ Gui, Show, w200 h300, Mouse Confinement Controls
 return
 
 ^Up::
-    radius += 50
+    radius += 10
     ToolTip, Radius Increased to: %radius%
     SetTimer, RemoveToolTip, -1000
 return
 
 ^Down::
-    radius -= 50
+    radius -= 10
     if (radius < 50)
         radius := 50
     ToolTip, Radius Decreased to: %radius%
