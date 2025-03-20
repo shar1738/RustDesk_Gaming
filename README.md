@@ -33,7 +33,7 @@ Your gonna have to configure the circle for every new game you play as not all g
 
 For GM_GUI Users:
 Run the GM_GUI file.
-Drag the GUI to the top-left corner of your screen to center the circle.
+Drag the GUI to the top-left corner of your screen if not already there, in order to center the circle.
 Use the following hotkeys to control the circle:
 (Ctrl + T: Toggle the circle on/off)
 (Ctrl + K: Stop the program)
