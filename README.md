@@ -55,4 +55,7 @@ If You Don’t Know Your Resolution:
 Run the getresolution file.
 Use the obtained resolution in the window_name_get.py file.
 
-Let me know if you have any questions or feedback. Happy RustDesk-Gaming!
+GETTING EVERYTHING WORKING
+If you are under restricted wifi access I recomend using a hotspot, if you can use a vpn as well  for extra security.
+Run Rust Desk on your home pc and then run it on your remote computer and connect using the pin from your home computer. 
+If you want audio look into streammyaudio software for window and use a virtual audio cable  as your input device (Virtual audio cable costs $5 but there are other free alternatives). Now with rust desk up in running my a shortcut on your desktop with ethier the GM.ahk or GM_GUI. Run the program and line up the radius size with the in the game crosshairs with the radius scale buttons. DO THIS BEFORE CLICKING INTO YOUR WINDOW. If you need to escape after clicking into the window, just hit the windows key and click on any white part to tab out of the window to gain control over the program. That pretty much sums up everything though. Let me know if you have any questions or feedback. Happy RustDesk-Gaming!
