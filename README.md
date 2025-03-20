@@ -12,8 +12,8 @@ This program allows you to confine your mouse within a specified circular bounda
 
 The program features a straightforward, GUI that lets you toggle the confinement on or off, modify the radius, and reset it to default settings. This tool is perfect for users who need to limit mouse movement to a specific area on their screen.
 
-The basic program is GM which allows is the best option right now
-GM_UI works but is pretty scuffed for now
+The basic program is GM_UI which is the best option right now.
+GM works better for centering your circle but the ui method is fine.
 You should configure your mouse speed through you os settings and find what works with your game, usually slowing it all the way down is the best way to play. (I couldn't get autohotkey to control your curser speed if their are any solutions let me know).
 RD_Window_Confienment is if you just want to keep your mouse in the RustDesk window (ctrl-t to toggle ctrl-k to stop program)
 all other files are explained below.
@@ -29,9 +29,7 @@ Its optional but if you want you can download antimicro off the microsoft store 
 
 Also it is not required but having vscode installed is the easiest way to get everything working. If vscode isn't viable you can use notepad to run autohotkey. And for the window_name_get you can always just hover over your RustDesk home pc connection window and copy the info above it. (though I will say its much more tideous) 
 
-For GM Users:
-Run the GM file.
-All controls are listed in the GM_GUI.
+Your gonna have to configure the circle for every new game you play as not all game cameras are built equal but with a little tinkering you should be up and running in no time, I recomend writting down the radius works best for each game you play. 
 
 For GM_GUI Users:
 Run the GM_GUI file.
@@ -42,7 +40,14 @@ Use the following hotkeys to control the circle:
 (Ctrl + UP: Increase the radius)
 (Ctrl + DOWN: Decrease the radius)
 (Ctrl + R: Reset the radius to default)
+(Ctrl + S: To Save the radius)
+(Ctrl + L: To Load the saved radius)
 
+For GM Users:
+Run the GM file.
+All controls are listed in the GM_GUI.
+
+(You can always manually write in your windows name this is just for people who want to copy and paste, in GETTING EVERYTHING WORKING I elaborate on this).
 For RD_WINDOW_CONFINEMENT Users:
 Open VSCode and launch the terminal.
 Run the following command to install the required dependency:
@@ -56,6 +61,4 @@ Run the getresolution file.
 Use the obtained resolution in the window_name_get.py file.
 
 GETTING EVERYTHING WORKING
-If you are under restricted wifi access I recomend using a hotspot, if you can use a vpn as well  for extra security.
-Run Rust Desk on your home pc and then run it on your remote computer and connect using the pin from your home computer. 
-If you want audio look into streammyaudio software for window and use a virtual audio cable  as your input device (Virtual audio cable costs $5 but there are other free alternatives). Now with rust desk up in running my a shortcut on your desktop with ethier the GM.ahk or GM_GUI. Run the program and line up the radius size with the in the game crosshairs with the radius scale buttons. DO THIS BEFORE CLICKING INTO YOUR WINDOW. If you need to escape after clicking into the window, just hit the windows key and click on any white part to tab out of the window to gain control over the program. Also there is a minimize button in rustdesk for the full-screen option. That pretty much sums up everything though. Let me know if you have any questions or feedback. Happy RustDesk-Gaming!
+If you are under restricted wifi access I recomend using a hotspot, if you can, use a vpn as well for extra security please do so. Run Rust Desk on your home pc and then run it on your remote computer, connect using the pin from your home computer. If you want audio look into streammyaudio software for windows and use a virtual audio cable as your input device (Virtual audio cable costs $5 but there are other free alternatives). Now with rust desk up in running make a shortcut on your desktop for ethier the GM_GUI or GM. Run the program and line up the radius size with the in the game crosshairs with the radius scale buttons. DO THIS BEFORE CLICKING INTO YOUR WINDOW. If you need to escape after clicking into the window, just hit the windows key and click on any white part to tab out of the window to gain control over the program. I know its not a ideal, and you may have to mess around to get the ideal setup but it should work. Also there is a minimize button in rustdesk for the full-screen option. That pretty much sums up everything though. Let me know if you have any questions or feedback. Happy Bootleg-Gaming!
