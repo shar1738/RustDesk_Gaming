@@ -39,7 +39,7 @@ Use the following hotkeys to control the circle:
 (Ctrl + K: Stop the program)
 (Ctrl + UP: Increase the radius)
 (Ctrl + DOWN: Decrease the radius)
-(Ctrl + R: Reset the radius to default)
+(Ctrl + R: Reset the radius)
 (Ctrl + S: To Save the radius)
 (Ctrl + L: To Load the saved radius)
 
