@@ -17,7 +17,7 @@ Gui, Add, Text, vText1 x20 y20 w200 h30, Mouse Confinement: OFF
 Gui, Add, Button, x20 y60 w150 h30 gToggleConfinement, Toggle Confinement
 Gui, Add, Button, x20 y100 w150 h30 gIncreaseRadius, Increase Radius
 Gui, Add, Button, x20 y140 w150 h30 gDecreaseRadius, Decrease Radius
-Gui, Add, Button, x20 y180 w150 h30 gResetRadius, Reset Radius
+Gui, Add, Button, x20 y180 w150 h30 gResetRadiusAction, Reset Radius  ; Corrected label name
 Gui, Add, Button, x20 y220 w150 h30 gSaveRadius, Save Radius
 Gui, Add, Button, x20 y260 w150 h30 gLoadRadius, Load Radius
 Gui, Add, Button, x20 y300 w150 h30 gStopScript, Stop Script
@@ -33,7 +33,7 @@ Gui, Show, x0 y0 w250 h380, Mouse Confinement Controls
 ^t::ToggleConfinement()
 ^Up::IncreaseRadius()
 ^Down::DecreaseRadius()
-^r::ResetRadius()
+^r::SnapGuiToTopLeft()  ; Changed hotkey action for Ctrl+R
 ^s::SaveRadius()
 ^l::LoadRadius()
 ^k::StopScript()
@@ -64,7 +64,12 @@ DecreaseRadius() {
     ShowRadiusTooltip("Decreased")
 }
 
-ResetRadius() {
+SnapGuiToTopLeft() {
+    ; Move the GUI to the top-left corner
+    Gui, Show, x0 y0 w250 h380, Mouse Confinement Controls
+}
+
+ResetRadiusAction() {
     global radius
     radius := 250
     ShowRadiusTooltip("Reset to Default")
@@ -145,4 +150,5 @@ StopScript() {
     ToolTip
     ExitApp
 }
+
 
