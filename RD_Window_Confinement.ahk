@@ -104,7 +104,7 @@ return
 ; ------------------------------
 ; TOGGLE CONFINEMENT HOTKEY (CTRL + T)
 ; ------------------------------
-^t::
+~^t::
     ConfineMouseState := !ConfineMouseState  ; Toggle the confinement state
     if (ConfineMouseState) {
         Tooltip, Mouse confinement enabled
@@ -122,7 +122,7 @@ return
 ; EXIT HOTKEY (CTRL + k)
 ; ------------------------------
 
-^k::
+~^k::
     DllCall("ClipCursor", "UInt", 0)  ; Free the mouse from any constraints
     ExitApp
 return
