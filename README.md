@@ -27,14 +27,16 @@ Make sure you have AutoHotkey installed.
 Install RustDesk on both your home and remote PCs, and set it up before proceeding.
 Its optional but if you want you can download antimicro off the microsoft store to use a controller (I added my own input map in the repository but use whatever inputs make sense to you). 
 
-Also it is not required but having vscode installed is the easiest way to get everything working. If vscode isn't viable you can use notepad to run autohotkey. And for the window_name_get you can always just hover over your RustDesk home pc connection window and copy the info above it. (though I will say its much more tideous) 
+Also it is not required but having vscode installed is the easiest way to get everything working. If vscode isn't viable you can use notepad to run autohotkey. 
 
-Your gonna have to configure the circle for every new game you play as not all game cameras are built equal but with a little tinkering you should be up and running in no time, I recomend writting down the radius works best for each game you play. 
+Your gonna have to configure the circle for every new game you play as not all game cameras are built equal but with a little tinkering you should be up and running in no time, I recomend writting down the radius that works best for each game you play. 
 
 For GM_GUI Users:
 Run the GM_GUI file.
 Drag the GUI to the top-left corner of your screen if not already there, in order to center the circle.
 Use the following hotkeys to control the circle:
+(Ctrl + 1: Toggle the Hotkeys)
+(Ctrl + W: Toggle the GUI)
 (Ctrl + T: Toggle the circle on/off)
 (Ctrl + K: Stop the program)
 (Ctrl + UP: Increase the radius) SMALLER USUALLY IS BETTER 
@@ -49,16 +51,13 @@ All controls are listed in the GM_GUI.
 
 (You can always manually write in your windows name this is just for people who want to copy and paste, in GETTING EVERYTHING WORKING I elaborate on this).
 For RD_WINDOW_CONFINEMENT Users:
-Open VSCode and launch the terminal.
-Run the following command to install the required dependency:
-pip install pygetwindow.
-Run the window_name_get.py file.
+Run the get_win file.
 In the code file, copy and paste your window name into the designated section ("").
 Adjust the resolution to match your display's resolution.
 
 If You Don’t Know Your Resolution:
 Run the getresolution file.
-Use the obtained resolution in the window_name_get.py file.
+Use the obtained resolution in the RD_Window file.
 
 GETTING EVERYTHING WORKING
-If you are under restricted wifi access I recomend using a hotspot, if you can, use a vpn as well for extra security please do so. Run Rust Desk on your home pc and then run it on your remote computer, connect using the pin from your home computer. If you want audio look into streammyaudio software for windows and use a virtual audio cable as your input device (Virtual audio cable costs $5 but there are other free alternatives). Now with rust desk up in running make a shortcut on your desktop for ethier the GM_GUI or GM. Run the program and line up the radius size with the in the game crosshairs with the radius scale buttons. DO THIS BEFORE CLICKING INTO YOUR WINDOW. If you need to escape after clicking into the window, just hit the windows key and click on any white part to tab out of the window to gain control over the program. I know its not a ideal, and you may have to mess around to get the ideal setup but it should work. Also there is a minimize button in rustdesk for the full-screen option. That pretty much sums up everything though. Let me know if you have any questions or feedback. Happy Bootleg-Gaming!
+If you are under restricted wifi access I recomend using a hotspot, if you can, use a vpn as well for extra security please do so. Run Rust Desk on your home pc and then run it on your remote computer, connect using the pin from your home computer. If you want audio look into streammyaudio software for windows and use a virtual audio cable as your input device (Virtual audio cable costs $5 but there are other free alternatives). Now with rust desk up in running make a shortcut on your desktop for ethier the GM_GUI or GM. Run the program and line up the radius size with the in the game crosshairs with the radius scale buttons. That pretty much sums up everything though. Let me know if you have any questions or feedback. Happy Bootleg-Gaming!
