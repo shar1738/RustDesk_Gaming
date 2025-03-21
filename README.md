@@ -10,7 +10,7 @@ If you encounter any issues or have better solutions, please share them, and I'l
 Overview
 This program allows you to confine your mouse within a specified circular boundary on your screen. Once activated, the mouse is restricted to move inside the circle, preventing it from exiting the defined area. You can adjust the circle’s radius using buttons or hotkeys. The center of the circle is dynamically positioned at the center of your screen, ensuring that the confinement is always centered.
 
-The program features a straightforward, GUI that lets you toggle the confinement on or off, modify the radius, and reset it to default settings. This tool is perfect for users who need to limit mouse movement to a specific area on their screen.
+The program features a straightforward, GUI that lets you toggle the confinement on or off, modify the radius, and reset it to default settings. This tool is perfect for users who need to limit mouse movement to a specific area on their screen and for people who want to game on their home pc through rust desk.
 
 The basic program is GM_UI which is the best option right now.
 You should configure your mouse speed through you os settings and find what works with your game, usually slowing it all the way down is the best way to play and also MAKING THE RADIUS SMALLER IS USUALLY BETTER. (I couldn't get autohotkey to control your curser speed if their are any solutions let me know).
@@ -28,7 +28,7 @@ Its optional but if you want you can download antimicro off the microsoft store 
 
 Also it is not required but having vscode installed is the easiest way to get everything working. If vscode isn't viable you can use notepad to run autohotkey. 
 
-Your gonna have to configure the circle for every new game you play as not all game cameras are built equal but with a little tinkering you should be up and running in no time, I recomend writting down the radius that works best for each game you play. 
+Your gonna have to configure the circle for every new game you play as not all game cameras are built equal, (10 is the best for most) but with a little tinkering you should be up and running in no time, I recomend writting down the radius that works best for each game you play. 
 
 For GM_GUI Users:
 Run the GM_GUI file.
@@ -40,7 +40,7 @@ Use the following hotkeys to control the circle:
 (Ctrl + K: Stop the program)
 (Ctrl + UP: Increase the radius) SMALLER USUALLY IS BETTER 
 (Ctrl + DOWN: Decrease the radius)
-(Ctrl + R: Reset the radius)
+(Ctrl + R: Reset the gui)
 (Ctrl + S: To Save the radius)
 (Ctrl + L: To Load the saved radius)
 
