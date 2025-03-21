@@ -1,4 +1,4 @@
-#SingleInstance Force 
+#SingleInstance Force
 #Persistent
 
 SetTimer, ConfineMouse, 5  ; Continuously check mouse position
@@ -17,7 +17,7 @@ Gui, Add, Text, vText1 x20 y20 w200 h30, Mouse Confinement: OFF
 Gui, Add, Button, x20 y60 w150 h30 gToggleConfinement, Toggle Confinement
 Gui, Add, Button, x20 y100 w150 h30 gIncreaseRadius, Increase Radius
 Gui, Add, Button, x20 y140 w150 h30 gDecreaseRadius, Decrease Radius
-Gui, Add, Button, x20 y180 w150 h30 gResetRadiusAction, Reset Radius  ; Corrected label name
+Gui, Add, Button, x20 y180 w150 h30 gResetRadiusAction, Reset Radius
 Gui, Add, Button, x20 y220 w150 h30 gSaveRadius, Save Radius
 Gui, Add, Button, x20 y260 w150 h30 gLoadRadius, Load Radius
 Gui, Add, Button, x20 y300 w150 h30 gStopScript, Stop Script
@@ -29,14 +29,40 @@ Gui, Add, Button, x130 y340 w90 h25 gSetManualRadius, Set Radius
 ; Show the GUI window at the top-left corner of the screen
 Gui, Show, x0 y0 w250 h380, Mouse Confinement Controls
 
-; Hotkeys
-^t::ToggleConfinement()
-^Up::IncreaseRadius()
-^Down::DecreaseRadius()
-^r::SnapGuiToTopLeft()  ; Changed hotkey action for Ctrl+R
-^s::SaveRadius()
-^l::LoadRadius()
-^k::StopScript()
+; Define universal hotkeys
+~^t::ToggleConfinement()
+~^Up::IncreaseRadius()
+~^Down::DecreaseRadius()
+~^r::SnapGuiToTopLeft()
+~^s::SaveRadius()
+~^l::LoadRadius()
+~^k::StopScript()
+~^w::ToggleGuiPosition()
+
+ToggleGuiPosition() {
+    static isOnTop := false  ; Tracks whether the GUI is on top
+
+    if (isOnTop) {
+        ; Move GUI to the background
+        Gui, -AlwaysOnTop
+        ToolTip, GUI Can Now Move Back
+    } else {
+        ; Bring GUI to the foreground
+        Gui, +AlwaysOnTop
+        Gui, Show  ; Ensure it appears on screen
+        ToolTip, GUI Brought to Top
+    }
+
+    ; Toggle the position state
+    isOnTop := !isOnTop
+
+    ; Show tooltip briefly for user feedback
+    SetTimer, RemoveToolTip, -1000
+}
+
+RemoveToolTip() {
+    ToolTip
+}
 
 ToggleConfinement() {
     global isConfined, centerX, centerY
@@ -65,7 +91,6 @@ DecreaseRadius() {
 }
 
 SnapGuiToTopLeft() {
-    ; Move the GUI to the top-left corner
     Gui, Show, x0 y0 w250 h380, Mouse Confinement Controls
 }
 
@@ -85,16 +110,14 @@ LoadRadius() {
     global radius := sradius
     IniRead, radius, settings.ini, Mouse, Radius, 250
 
-    ; Debug: Show what was read from the file
     ToolTip, Debug - Read Radius: %radius%
-    Sleep, 1500  ; Keep tooltip for 1.5 seconds for debugging
+    Sleep, 1500
 
-    ; Ensure it's a valid number
     if !(radius is integer) || (radius < 10) {
-        radius := 250  ; Default to 250 if the value is invalid
+        radius := 250
     }
 
-    GuiControl,, RadiusInput, %radius%  ; Update the GUI input box
+    GuiControl,, RadiusInput, %radius%
     ShowRadiusTooltip("Loaded")
 }
 
@@ -139,10 +162,6 @@ ShowRadiusTooltip(action) {
     SetTimer, RemoveToolTip, -1000
 }
 
-RemoveToolTip() {
-    ToolTip
-}
-
 StopScript() {
     ToolTip, Stopping Script...
     SetTimer, ConfineMouse, Off
@@ -150,5 +169,3 @@ StopScript() {
     ToolTip
     ExitApp
 }
-
-
