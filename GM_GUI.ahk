@@ -1,5 +1,7 @@
 #SingleInstance Force
 #Persistent
+#InstallKeybdHook  ; Ensures hotkeys work in all windows
+#UseHook           ; Explicitly use the hook method for hotkeys
 
 SetTimer, ConfineMouse, 5  ; Continuously check mouse position
 
@@ -109,13 +111,13 @@ ToggleConfinement() {
 
 IncreaseRadius() {
     global radius
-    radius += 10
+    radius += 5  ; Increase by 5
     ShowRadiusTooltip("Increased")
 }
 
 DecreaseRadius() {
     global radius
-    radius := Max(radius - 10, 10)
+    radius := Max(radius - 5, 0)  ; Decrease by 5, with a minimum of 0
     ShowRadiusTooltip("Decreased")
 }
 
@@ -125,8 +127,8 @@ SnapGuiToTopLeft() {
 
 ResetRadiusAction() {
     global radius
-    radius := 10
-    ShowRadiusTooltip("Reset to Default")
+    radius := 0  ; Reset to the minimum value of 0
+    ShowRadiusTooltip("Reset to Minimum")
 }
 
 SaveRadius() {
@@ -137,10 +139,10 @@ SaveRadius() {
 
 LoadRadius() {
     global radius
-    IniRead, radius, settings.ini, Mouse, Radius, 10
+    IniRead, radius, settings.ini, Mouse, Radius, 0
 
-    if !(radius is integer) || (radius < 10) {
-        radius := 10
+    if !(radius is integer) || (radius < 0) {
+        radius := 0  ; Ensure no negative values are loaded
     }
 
     GuiControl,, RadiusInput, %radius%
@@ -150,11 +152,11 @@ LoadRadius() {
 SetManualRadius() {
     global radius
     GuiControlGet, newRadius, , RadiusInput
-    if (newRadius is integer) && (newRadius >= 10) {
+    if (newRadius is integer) && (newRadius >= 0) {
         radius := newRadius
         ShowRadiusTooltip("Set Manually")
     } else {
-        ToolTip, Invalid Input! Enter a number ≥ 10.
+        ToolTip, Invalid Input! Enter a number ≥ 0.
         SetTimer, RemoveToolTip, -1500
     }
 }
@@ -195,4 +197,3 @@ StopScript() {
     ToolTip
     ExitApp
 }
-
