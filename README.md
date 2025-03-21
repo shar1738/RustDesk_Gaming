@@ -10,7 +10,7 @@ If you encounter any issues or have better solutions, please share them, and I'l
 Overview
 This program allows you to confine your mouse within a specified circular boundary on your screen. Once activated, the mouse is restricted to move inside the circle, preventing it from exiting the defined area. You can adjust the circle’s radius using buttons or hotkeys. The center of the circle is dynamically positioned at the center of your screen, ensuring that the confinement is always centered.
 
-The program features a straightforward, GUI that lets you toggle the confinement on or off, modify the radius, and reset it to default settings. This tool is perfect for users who need to limit mouse movement to a specific area on their screen and for people who want to game on their home pc through rust desk.
+The program features a straightforward, GUI that lets you toggle the confinement on or off, modify the radius, reset the radius, increase and decrease the radius, and type your own value above 0. This tool is perfect for users who need to limit mouse movement to a specific area on their screen and for people who want to game on their home pc through rust desk.
 
 The basic program is GM_UI which is the best option right now.
 You should configure your mouse speed through you os settings and find what works with your game, usually slowing it all the way down is the best way to play and also MAKING THE RADIUS SMALLER IS USUALLY BETTER. (I couldn't get autohotkey to control your curser speed if their are any solutions let me know).
@@ -28,10 +28,10 @@ Its optional but if you want you can download antimicro off the microsoft store 
 
 Also it is not required but having vscode installed is the easiest way to get everything working. If vscode isn't viable you can use notepad to run autohotkey. 
 
-Your gonna have to configure the circle for every new game you play as not all game cameras are built equal, (.1 is the good for most games) but with a little tinkering you should be up and running in no time, I recomend writting down the radius that works best for each game you play. 
+Your gonna have to configure the circle for every new game you play as not all game cameras are built equal, (.1 is the good for most games)
 
 THE ISSUE 
-Everything runs well except for getting your mouse out of the radius when in rust desk. Since rust desk captures your keyboard in its software, it voids all the autohotkeys in the program. This is bad because now you just have a trapped mouse in the middle of the screen with no where to go. THE FIX FOR NOW use other keys on the keyboard to access your current pc again, find the ones that work for you, if your using windows hit CTRL-ALT-DELETE in order to regain control, hit cancel so you don't shut down or log out your pc, and then you are back in the program. This is the only consistent solution I could find to this issue I could find without modifying the rust desk code which is a nightmare. Please if you have a solution, please share, but for now, just do this (I know its not ideal but it is what it is) 
+Everything runs well except for getting your mouse out of the radius when in rust desk. Since rust desk captures your keyboard in its software, it voids all the autohotkeys in the program. This is bad because now you just have a trapped mouse in the middle of the screen with no where to go. THE FIX FOR NOW use other keys on the keyboard to access your current pc again, find the ones that work for you, if your using windows hit CTRL-ALT-DELETE in order to regain control, hit cancel so you don't shut down or log out your pc, and then you are back in the program. This is the only consistent solution I could find without modifying the rust desk code which is a nightmare. Please if you have a solution, please share, but for now, just do this (I know its not ideal but it is what it is for now) 
 
 For GM_GUI Users:
 Run the GM_GUI file.
@@ -47,7 +47,7 @@ Use the following hotkeys to control the circle:
 (Ctrl + S: To Save the radius)
 (Ctrl + L: To Load the saved radius)
 
-(You can always manually write in your windows name this is just for people who want to copy and paste, in GETTING EVERYTHING WORKING I elaborate on this).
+(You can always manually write in your windows name this is just for people who want to copy and paste, --in GETTING EVERYTHING WORKING I elaborate on this).
 For RD_WINDOW_CONFINEMENT Users:
 Run the get_win file.
 In the code file, copy and paste your window name into the designated section ("").
@@ -58,4 +58,4 @@ Run the getresolution file.
 Use the obtained resolution in the RD_Window file.
 
 GETTING EVERYTHING WORKING
-If you are under restricted wifi access I recomend using a hotspot, if you can, use a vpn as well for extra security please do so. Run Rust Desk on your home pc and then run it on your remote computer, connect using the pin from your home computer. If you want audio look into streammyaudio software for windows and use a virtual audio cable as your input device (Virtual audio cable costs $5 but there are other free alternatives). Now with rust desk up in running make a shortcut on your desktop for ethier the GM_GUI or GM. Run the program and line up the radius size with the in the game crosshairs with the radius scale buttons. Full screen Rust desk and select the game you want to play and get to the point where your controlling the game camera. After that minimize RustDesk so you get  back to desktop. Then toggle on the radius and then alt tab back into your game and use esc if you are stuck in a game menu. Remember to get out of this game state refer to THE ISSUE. That pretty much sums up everything though. Let me know if you have any questions or feedback. Happy Bootleg-Gaming!
+If you are under restricted wifi access I recomend using a hotspot, if you can, use a vpn as well for extra security please do so. Run Rust Desk on your home pc and then run it on your remote computer, connect using the pin from your home computer. If you want audio look into streammyaudio software for windows and use a virtual audio cable as your input device (Virtual audio cable costs $5 but there are other free alternatives). Now with rust desk up in running make a shortcut on your desktop for ethier the GM_GUI or GM. Run the program and line up the radius size with the in the game crosshairs with the radius scale buttons. Full screen Rust desk and select the game you want to play and get to the point where your controlling the game camera. After that minimize RustDesk so you get  back to desktop. Then toggle on the radius and then alt tab back into your game. Use esc if you are stuck in a game menu. Remember to get out of this game state refer to THE ISSUE. That pretty much sums up everything though. Let me know if you have any questions or feedback. Happy Bootleg-Gaming!
