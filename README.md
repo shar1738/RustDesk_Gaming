@@ -14,7 +14,7 @@ The program features a straightforward, GUI that lets you toggle the confinement
 
 The basic program is GM_UI which is the best option right now.
 GM works better for centering your circle but the ui method is fine.
-You should configure your mouse speed through you os settings and find what works with your game, usually slowing it all the way down is the best way to play. (I couldn't get autohotkey to control your curser speed if their are any solutions let me know).
+You should configure your mouse speed through you os settings and find what works with your game, usually slowing it all the way down is the best way to play and also MAKING THE RADIUS SMALLER IS USUALLY BETTER. (I couldn't get autohotkey to control your curser speed if their are any solutions let me know).
 RD_Window_Confienment is if you just want to keep your mouse in the RustDesk window (ctrl-t to toggle ctrl-k to stop program)
 all other files are explained below.
 
@@ -37,7 +37,7 @@ Drag the GUI to the top-left corner of your screen if not already there, in orde
 Use the following hotkeys to control the circle:
 (Ctrl + T: Toggle the circle on/off)
 (Ctrl + K: Stop the program)
-(Ctrl + UP: Increase the radius)
+(Ctrl + UP: Increase the radius) SMALLER USUALLY IS BETTER 
 (Ctrl + DOWN: Decrease the radius)
 (Ctrl + R: Reset the radius)
 (Ctrl + S: To Save the radius)
