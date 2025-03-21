@@ -4,14 +4,14 @@
 SetTimer, ConfineMouse, 5  ; Continuously check mouse position
 
 ; Default variables
-radius := 250
+radius := 10
 isConfined := false
 centerX := 0
 centerY := 0
 isHotkeysEnabled := true  ; Tracks whether the hotkeys are enabled
 
 ; Load saved radius from settings.ini
-IniRead, radius, settings.ini, Mouse, Radius, 250
+IniRead, radius, settings.ini, Mouse, Radius, 10
 
 ; Create GUI window
 Gui, Add, Text, vText1 x20 y20 w200 h30, Mouse Confinement: OFF
@@ -125,7 +125,7 @@ SnapGuiToTopLeft() {
 
 ResetRadiusAction() {
     global radius
-    radius := 250
+    radius := 10
     ShowRadiusTooltip("Reset to Default")
 }
 
@@ -137,10 +137,10 @@ SaveRadius() {
 
 LoadRadius() {
     global radius
-    IniRead, radius, settings.ini, Mouse, Radius, 250
+    IniRead, radius, settings.ini, Mouse, Radius, 10
 
     if !(radius is integer) || (radius < 10) {
-        radius := 250
+        radius := 10
     }
 
     GuiControl,, RadiusInput, %radius%
