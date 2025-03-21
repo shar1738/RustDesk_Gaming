@@ -4,13 +4,14 @@
 SetTimer, ConfineMouse, 5  ; Continuously check mouse position
 
 ; Default variables
-radius := 250  ; Default radius for mouse confinement
-isConfined := false  ; Mouse confinement is disabled by default
-centerX := 0  
-centerY := 0  
+radius := 250
+isConfined := false
+centerX := 0
+centerY := 0
+isHotkeysEnabled := true  ; Tracks whether the hotkeys are enabled
 
 ; Load saved radius from settings.ini
-IniRead, radius, settings.ini, Mouse, Radius, 250  
+IniRead, radius, settings.ini, Mouse, Radius, 250
 
 ; Create GUI window
 Gui, Add, Text, vText1 x20 y20 w200 h30, Mouse Confinement: OFF
@@ -39,24 +40,52 @@ Gui, Show, x0 y0 w250 h380, Mouse Confinement Controls
 ~^k::StopScript()
 ~^w::ToggleGuiPosition()
 
+; Define the Ctrl+Escape hotkey to toggle all other hotkeys
+~^1::ToggleHotkeys()
+
+ToggleHotkeys() {
+    global isHotkeysEnabled
+    isHotkeysEnabled := !isHotkeysEnabled
+
+    if (isHotkeysEnabled) {
+        Hotkey, ^t, ToggleConfinement, On
+        Hotkey, ^Up, IncreaseRadius, On
+        Hotkey, ^Down, DecreaseRadius, On
+        Hotkey, ^r, SnapGuiToTopLeft, On
+        Hotkey, ^s, SaveRadius, On
+        Hotkey, ^l, LoadRadius, On
+        Hotkey, ^k, StopScript, On
+        Hotkey, ^w, ToggleGuiPosition, On
+        ToolTip, Hotkeys Enabled
+    } else {
+        Hotkey, ^t, ToggleConfinement, Off
+        Hotkey, ^Up, IncreaseRadius, Off
+        Hotkey, ^Down, DecreaseRadius, Off
+        Hotkey, ^r, SnapGuiToTopLeft, Off
+        Hotkey, ^s, SaveRadius, Off
+        Hotkey, ^l, LoadRadius, Off
+        Hotkey, ^k, StopScript, Off
+        Hotkey, ^w, ToggleGuiPosition, Off
+        ToolTip, Hotkeys Disabled
+    }
+
+    ; Show the tooltip briefly
+    SetTimer, RemoveToolTip, -1000
+}
+
 ToggleGuiPosition() {
-    static isOnTop := false  ; Tracks whether the GUI is on top
+    static isOnTop := false
 
     if (isOnTop) {
-        ; Move GUI to the background
         Gui, -AlwaysOnTop
-        ToolTip, GUI Can Now Move Back
+        ToolTip, GUI Moved to Background
     } else {
-        ; Bring GUI to the foreground
         Gui, +AlwaysOnTop
-        Gui, Show  ; Ensure it appears on screen
+        Gui, Show
         ToolTip, GUI Brought to Top
     }
 
-    ; Toggle the position state
     isOnTop := !isOnTop
-
-    ; Show tooltip briefly for user feedback
     SetTimer, RemoveToolTip, -1000
 }
 
@@ -86,7 +115,7 @@ IncreaseRadius() {
 
 DecreaseRadius() {
     global radius
-    radius := Max(radius - 10, 10)  ; Ensure minimum radius is 10
+    radius := Max(radius - 10, 10)
     ShowRadiusTooltip("Decreased")
 }
 
@@ -101,17 +130,14 @@ ResetRadiusAction() {
 }
 
 SaveRadius() {
-    global radius := sradius
+    global radius
     IniWrite, %radius%, settings.ini, Mouse, Radius
     ShowRadiusTooltip("Saved")
 }
 
 LoadRadius() {
-    global radius := sradius
+    global radius
     IniRead, radius, settings.ini, Mouse, Radius, 250
-
-    ToolTip, Debug - Read Radius: %radius%
-    Sleep, 1500
 
     if !(radius is integer) || (radius < 10) {
         radius := 250
@@ -124,7 +150,7 @@ LoadRadius() {
 SetManualRadius() {
     global radius
     GuiControlGet, newRadius, , RadiusInput
-    if (newRadius is integer) && (newRadius >= 10) {  
+    if (newRadius is integer) && (newRadius >= 10) {
         radius := newRadius
         ShowRadiusTooltip("Set Manually")
     } else {
@@ -169,3 +195,4 @@ StopScript() {
     ToolTip
     ExitApp
 }
+
