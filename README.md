@@ -13,7 +13,6 @@ This program allows you to confine your mouse within a specified circular bounda
 The program features a straightforward, GUI that lets you toggle the confinement on or off, modify the radius, and reset it to default settings. This tool is perfect for users who need to limit mouse movement to a specific area on their screen.
 
 The basic program is GM_UI which is the best option right now.
-GM works better for centering your circle but the ui method is fine.
 You should configure your mouse speed through you os settings and find what works with your game, usually slowing it all the way down is the best way to play and also MAKING THE RADIUS SMALLER IS USUALLY BETTER. (I couldn't get autohotkey to control your curser speed if their are any solutions let me know).
 RD_Window_Confienment is if you just want to keep your mouse in the RustDesk window (ctrl-t to toggle ctrl-k to stop program)
 all other files are explained below.
@@ -44,10 +43,6 @@ Use the following hotkeys to control the circle:
 (Ctrl + R: Reset the radius)
 (Ctrl + S: To Save the radius)
 (Ctrl + L: To Load the saved radius)
-
-For GM Users:
-Run the GM file.
-All controls are listed in the GM_GUI.
 
 (You can always manually write in your windows name this is just for people who want to copy and paste, in GETTING EVERYTHING WORKING I elaborate on this).
 For RD_WINDOW_CONFINEMENT Users:
