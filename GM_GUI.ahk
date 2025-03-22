@@ -1,16 +1,16 @@
 #SingleInstance Force
 #Persistent
-#InstallKeybdHook  ; Ensures hotkeys work in all windows
-#UseHook           ; Explicitly use the hook method for hotkeys
+#InstallKeybdHook  
+#UseHook           
 
-SetTimer, ConfineMouse, 5  ; Continuously check mouse position
+SetTimer, ConfineMouse, 5  
 
 ; Default variables
-radius := 10
-isConfined := false
-centerX := 0
-centerY := 0
-isHotkeysEnabled := true  ; Tracks whether the hotkeys are enabled
+global radius := 10
+global isConfined := false
+global centerX := 0
+global centerY := 0
+global isHotkeysEnabled := true  
 
 ; Load saved radius from settings.ini
 IniRead, radius, settings.ini, Mouse, Radius, 10
@@ -25,53 +25,46 @@ Gui, Add, Button, x20 y220 w150 h30 gSaveRadius, Save Radius
 Gui, Add, Button, x20 y260 w150 h30 gLoadRadius, Load Radius
 Gui, Add, Button, x20 y300 w150 h30 gStopScript, Stop Script
 
-; Add manual input for radius
 Gui, Add, Edit, vRadiusInput x20 y340 w100 h25, %radius%
 Gui, Add, Button, x130 y340 w90 h25 gSetManualRadius, Set Radius
 
-; Show the GUI window at the top-left corner of the screen
 Gui, Show, x0 y0 w250 h380, Mouse Confinement Controls
 
 ; Define universal hotkeys
-~^t::ToggleConfinement()
-~^Up::IncreaseRadius()
-~^Down::DecreaseRadius()
-~^r::SnapGuiToTopLeft()
-~^s::SaveRadius()
-~^l::LoadRadius()
-~^k::StopScript()
-~^w::ToggleGuiPosition()
+global keys := "^t,^Up,^Down,^r,^s,^l,^k,^w,^1"
+Loop, Parse, keys, `,
+    Hotkey, %A_LoopField%, HandleHotkey
 
-; Define the Ctrl+Escape hotkey to toggle all other hotkeys
-~^1::ToggleHotkeys()
+HandleHotkey:
+    key := A_ThisHotkey
+    if (key = "^t") 
+        ToggleConfinement()
+    else if (key = "^Up") 
+        IncreaseRadius()
+    else if (key = "^Down") 
+        DecreaseRadius()
+    else if (key = "^r") 
+        SnapGuiToTopLeft()
+    else if (key = "^s") 
+        SaveRadius()
+    else if (key = "^l") 
+        LoadRadius()
+    else if (key = "^k") 
+        StopScript()
+    else if (key = "^w") 
+        ToggleGuiPosition()
+    else if (key = "^1") 
+        ToggleHotkeys()
+return
 
 ToggleHotkeys() {
-    global isHotkeysEnabled
+    global isHotkeysEnabled, keys
     isHotkeysEnabled := !isHotkeysEnabled
 
-    if (isHotkeysEnabled) {
-        Hotkey, ^t, ToggleConfinement, On
-        Hotkey, ^Up, IncreaseRadius, On
-        Hotkey, ^Down, DecreaseRadius, On
-        Hotkey, ^r, SnapGuiToTopLeft, On
-        Hotkey, ^s, SaveRadius, On
-        Hotkey, ^l, LoadRadius, On
-        Hotkey, ^k, StopScript, On
-        Hotkey, ^w, ToggleGuiPosition, On
-        ToolTip, Hotkeys Enabled
-    } else {
-        Hotkey, ^t, ToggleConfinement, Off
-        Hotkey, ^Up, IncreaseRadius, Off
-        Hotkey, ^Down, DecreaseRadius, Off
-        Hotkey, ^r, SnapGuiToTopLeft, Off
-        Hotkey, ^s, SaveRadius, Off
-        Hotkey, ^l, LoadRadius, Off
-        Hotkey, ^k, StopScript, Off
-        Hotkey, ^w, ToggleGuiPosition, Off
-        ToolTip, Hotkeys Disabled
-    }
+    Loop, Parse, keys, `,
+        Hotkey, %A_LoopField%, % (isHotkeysEnabled ? "On" : "Off")
 
-    ; Show the tooltip briefly
+    ToolTip, Hotkeys % (isHotkeysEnabled ? "Enabled" : "Disabled")
     SetTimer, RemoveToolTip, -1000
 }
 
@@ -83,7 +76,6 @@ ToggleGuiPosition() {
         ToolTip, GUI Moved to Background
     } else {
         Gui, +AlwaysOnTop
-        Gui, Show
         ToolTip, GUI Brought to Top
     }
 
@@ -98,8 +90,7 @@ RemoveToolTip() {
 ToggleConfinement() {
     global isConfined, centerX, centerY
     isConfined := !isConfined
-    statusText := (isConfined ? "ON" : "OFF")
-    GuiControl,, Text1, Mouse Confinement: %statusText%
+    GuiControl,, Text1, Mouse Confinement: % (isConfined ? "ON" : "OFF")
 
     if (isConfined) {
         SysGet, ScreenWidth, 0
@@ -111,13 +102,13 @@ ToggleConfinement() {
 
 IncreaseRadius() {
     global radius
-    radius += 5  ; Increase by 5
+    radius += 5  
     ShowRadiusTooltip("Increased")
 }
 
 DecreaseRadius() {
     global radius
-    radius := Max(radius - 5, 0)  ; Decrease by 5, with a minimum of 0
+    radius := Max(radius - 5, 0)  
     ShowRadiusTooltip("Decreased")
 }
 
@@ -127,7 +118,7 @@ SnapGuiToTopLeft() {
 
 ResetRadiusAction() {
     global radius
-    radius := 0  ; Reset to the minimum value of 0
+    radius := 0  
     ShowRadiusTooltip("Reset to Minimum")
 }
 
@@ -140,10 +131,8 @@ SaveRadius() {
 LoadRadius() {
     global radius
     IniRead, radius, settings.ini, Mouse, Radius, 0
-
-    if !(radius is integer) || (radius < 0) {
-        radius := 0  ; Ensure no negative values are loaded
-    }
+    if radius is not integer  
+        radius := 0  
 
     GuiControl,, RadiusInput, %radius%
     ShowRadiusTooltip("Loaded")
@@ -152,35 +141,40 @@ LoadRadius() {
 SetManualRadius() {
     global radius
     GuiControlGet, newRadius, , RadiusInput
-    if (newRadius is integer) && (newRadius >= 0) {
-        radius := newRadius
-        ShowRadiusTooltip("Set Manually")
-    } else {
-        ToolTip, Invalid Input! Enter a number ≥ 0.
-        SetTimer, RemoveToolTip, -1500
-    }
+    if newRadius !=  
+        if newRadius >= 0  
+            radius := newRadius
+            ShowRadiusTooltip("Set Manually")
+        else {
+            ToolTip, Invalid Input! Enter a number ≥ 0.
+            SetTimer, RemoveToolTip, -1500
+        }
 }
 
 ConfineMouse() {
     global isConfined, centerX, centerY, radius
+    static lastScreenWidth, lastScreenHeight  
+
     if (!isConfined)
         return
 
     SysGet, ScreenWidth, 0
     SysGet, ScreenHeight, 1
-    centerX := ScreenWidth / 2
-    centerY := ScreenHeight / 2
+
+    if (ScreenWidth != lastScreenWidth || ScreenHeight != lastScreenHeight) {
+        centerX := ScreenWidth / 2
+        centerY := ScreenHeight / 2
+        lastScreenWidth := ScreenWidth
+        lastScreenHeight := ScreenHeight
+    }
 
     MouseGetPos, mouseX, mouseY
-    dx := mouseX - centerX
-    dy := mouseY - centerY
+    dx := mouseX - centerX, dy := mouseY - centerY
     distance := Sqrt(dx * dx + dy * dy)
 
     if (distance > radius) {
         factor := radius / distance
-        newX := centerX + (dx * factor)
-        newY := centerY + (dy * factor)
-        MouseMove, %newX%, %newY%, 0
+        MouseMove, % centerX + dx * factor, % centerY + dy * factor, 0
     }
 }
 
