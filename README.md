@@ -170,8 +170,6 @@ Max Payne 3
 
 Bioshock Infinite
 
-The Last of Us (PC via emulator)
-
 DOOM (2016)
 
 DOOM Eternal
@@ -199,12 +197,6 @@ Call of Duty: Warzone
 Tom Clancy’s Ghost Recon: Wildlands
 
 Tom Clancy’s Ghost Recon: Breakpoint
-
-Metro 2033
-
-Metro: Last Light
-
-Metro Exodus
 
 Dead Space (2008)
 
