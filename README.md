@@ -1,5 +1,5 @@
 RustDesk-Gaming
-DOWNLOAD AUTOHOT KEY 1.1, MAKE SURE YOUR GAME USES WIN32 API FOR CAPTURING INPUT
+DOWNLOAD AUTOHOT KEY 1.1, MAKE SURE YOUR GAME USES WIN32 API FOR CAPTURING INPUT. 
 Hello there,
 
 I wanted to find a way to emulate the in-game camera from my home PC to my remote PC over RustDesk. To challenge myself, I decided to implement a custom solution. If you have ever tried gaming over RustDesk you begin to see the issue real quick. I'm still newer to coding, feel free to point out areas that could be improved feedback is welcome I know its not the best solution. This project was developed in a short time frame with a mix of OpenAI assistance and some manual coding. (Mostly Ai tbh)
@@ -58,3 +58,210 @@ Use the obtained resolution in the RD_Window file.
 
 GETTING EVERYTHING WORKING
 If you are under restricted wifi (like school wifi) access I recomend using a hotspot, if you can, use a vpn as well for extra security please do so. Run Rust Desk on your home pc and then run it on your remote computer, connect using the pin from your home computer. If you want audio look into streammyaudio software for windows and use a virtual audio cable as your input device (Virtual audio cable costs $5 but there are other free alternatives). Now with rust desk up in running make a shortcut on your desktop for ethier the GM_GUI or GM. Run the program and line up the radius size with the in the game crosshairs with the radius scale buttons. Full screen Rust desk and select the game you want to play and get to the point where your controlling the game camera. After that minimize RustDesk so you get  back to desktop. Then toggle on the radius and then alt tab back into your game. Use esc if you are stuck in a game menu. Remember to get out of this game state refer to THE ISSUE. That pretty much sums up everything though. Let me know if you have any questions or feedback. Happy Bootleg-Gaming!
+
+GAMES THAT SHOULD WORK 
+Half-Life 1
+
+Half-Life 2
+
+Counter-Strike: Source
+
+Counter-Strike: Global Offensive
+
+Team Fortress 2
+
+Left 4 Dead 2
+
+Quake III Arena
+
+Unreal Tournament 2004
+
+Unreal Tournament 3
+
+DOOM 3
+
+Wolfenstein: Enemy Territory
+
+Call of Duty 4: Modern Warfare
+
+Call of Duty: World at War
+
+Battlefield 2
+
+Painkiller
+
+Serious Sam 2
+
+Star Wars: Jedi Knight II – Jedi Outcast
+
+Star Wars: Jedi Knight III – Jedi Academy
+
+Warcraft III
+
+Starcraft II
+
+Diablo III
+
+Halo: Combat Evolved (PC)
+
+Halo 2 (PC)
+
+Prey (2006)
+
+Command & Conquer: Generals
+
+Far Cry 1
+
+Far Cry 2
+
+Battlefield 1942
+
+Battlefield Vietnam
+
+Medal of Honor: Allied Assault
+
+Duke Nukem 3D (EDuke32)
+
+Quake Live
+
+Return to Castle Wolfenstein
+
+Resident Evil 4 (PC)
+
+Max Payne 1
+
+Max Payne 2
+
+Red Faction
+
+No One Lives Forever
+
+Aliens vs. Predator 2
+
+Turok: Dinosaur Hunter
+
+Warhammer 40,000: Dawn of War
+
+Total Annihilation
+
+Medieval: Total War
+
+Commandos: Behind Enemy Lines
+
+Star Wars: Battlefront (2004)
+
+Star Wars: Battlefront II (2005)
+
+Crysis (2007)
+
+Crysis Warhead
+
+The Witcher 2: Assassins of Kings
+
+The Elder Scrolls V: Skyrim
+
+Assassin’s Creed (PC)
+
+Assassin’s Creed II (PC)
+
+Watch Dogs (PC)
+
+Max Payne 3
+
+Bioshock Infinite
+
+The Last of Us (PC via emulator)
+
+DOOM (2016)
+
+DOOM Eternal
+
+Shadow Warrior (2013)
+
+Shadow Warrior 2
+
+Warframe
+
+Overwatch
+
+Paladins
+
+Battleborn
+
+Apex Legends
+
+Fortnite (on PC with raw input mode)
+
+PlayerUnknown’s Battlegrounds (PUBG)
+
+Call of Duty: Warzone
+
+Tom Clancy’s Ghost Recon: Wildlands
+
+Tom Clancy’s Ghost Recon: Breakpoint
+
+Metro 2033
+
+Metro: Last Light
+
+Metro Exodus
+
+Dead Space (2008)
+
+Dead Space 2
+
+Dead Space 3
+
+F.E.A.R. (2005)
+
+F.E.A.R. 2: Project Origin
+
+F.E.A.R. 3
+
+Tomb Raider (2013)
+
+Tomb Raider: The Rise of the Tomb Raider
+
+Mafia (2002)
+
+Mafia II
+
+Mafia III
+
+Battlefield 3
+
+Battlefield 4
+
+Battlefield Hardline
+
+Far Cry 3
+
+Far Cry 4
+
+Far Cry 5
+
+Ghost Recon: Future Soldier
+
+Saints Row: The Third
+
+Saints Row IV
+
+Crackdown 3
+
+Watch Dogs 2
+
+No Man’s Sky
+
+Cyberpunk 2077 (with raw input mode)
+
+The Division
+
+The Division 2
+
+Call of Duty: Black Ops (PC)
+
+Call of Duty: Black Ops II
+
+Call of Duty: Black Ops III
+
+Call of Duty: Modern Warfare (2019)
