@@ -73,3 +73,7 @@ Team Fortress 2
 Left 4 Dead 1 & 2
 
 Quake III Arena
+
+Splinter Cell Chaos Theroy 
+
+
