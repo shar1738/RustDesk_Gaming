@@ -1,5 +1,5 @@
 RustDesk-Gaming
-DOWNLOAD AUTOHOT KEY 1.1, SOME GAMES WORK BETTER THEN OTHERS
+DOWNLOAD AUTOHOT KEY 1.1, MAKE SURE YOUR GAME USES WIN32 API FOR CAPTURING INPUT
 Hello there,
 
 I wanted to find a way to emulate the in-game camera from my home PC to my remote PC over RustDesk. To challenge myself, I decided to implement a custom solution. If you have ever tried gaming over RustDesk you begin to see the issue real quick. I'm still newer to coding, feel free to point out areas that could be improved feedback is welcome I know its not the best solution. This project was developed in a short time frame with a mix of OpenAI assistance and some manual coding. (Mostly Ai tbh)
